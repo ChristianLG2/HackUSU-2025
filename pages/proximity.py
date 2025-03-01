@@ -93,7 +93,16 @@ else:
 
 st.plotly_chart(fig2, use_container_width=True)
 
+# 🚨 Add Table for Proximity Violations (when below 100m)
+st.subheader("🚨 Proximity Violations (Below 100m Limit)")
+proximity_limit = 100  # Define safety threshold
+
+if "relativeRange" in rpo_plan.columns:
+    proximity_violations = rpo_plan[rpo_plan["relativeRange"] < proximity_limit][["secondsSinceStart", "relativeRange"]]
+    st.dataframe(proximity_violations)
+else:
+    st.warning("⚠️ 'relativeRange' column not found. Cannot display proximity violations.")
+
 # Footer in sidebar
 st.sidebar.markdown("---")
 st.sidebar.markdown("📌 *Celestial Choreography Dashboard*")
-st.sidebar.markdown("👨‍💻 Developed by Chris")

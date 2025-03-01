@@ -1,58 +1,49 @@
 import streamlit as st
 import pandas as pd
-import plotly.graph_objects as go
 
 # Load dataset
 csv_path = "RpoPlan.csv"
 df = pd.read_csv(csv_path)
 
-# Strip column names to avoid errors
+# Strip column names to remove unwanted spaces
 df.columns = df.columns.str.strip()
 
-# Ensure the required columns exist
-if all(col in df.columns for col in ["secondsSinceStart", "eclipseTypeChief", "eclipseTypeDeputy", "relativeRange"]):
+# Required columns
+required_columns = [
+    "secondsSinceStart", "eclipseTypeChief", "eclipseTypeDeputy", 
+    "sensorAngleToSun", "sensorAngleToMoon", "sensorAngleToEarth",
+    "earthHalfAngle"
+]
 
-    st.subheader("🌑 Eclipse Events vs. Mission Plan")
+# Check if all required columns exist
+if all(col in df.columns for col in required_columns):
 
-    # Define eclipse labels and colors
-    eclipse_labels = {0: "No Eclipse", 1: "Partial Eclipse", 2: "Full Eclipse"}
-    color_map = {0: "green", 1: "orange", 2: "red"}
+    # Define visibility thresholds
+    sun_visibility_limit = 40  # Degrees - Sensors don't perform well if below this
+    moon_visibility_limit = 12  # Degrees
+    earth_visibility_limit = 10  # Degrees off Earth's limb
 
-    # Create base line chart for mission relative range
-    fig = go.Figure()
+    # Identify times when visibility is blocked due to Sun, Moon, or Earth
+    blocked_times = df[
+        (df["sensorAngleToSun"] < sun_visibility_limit) |
+        (df["sensorAngleToMoon"] < moon_visibility_limit) |
+        (df["sensorAngleToEarth"] < df["earthHalfAngle"] + earth_visibility_limit)
+    ][["secondsSinceStart", "sensorAngleToSun", "sensorAngleToMoon", "sensorAngleToEarth", "earthHalfAngle"]]
 
-    fig.add_trace(go.Scatter(
-        x=df["secondsSinceStart"],
-        y=df["relativeRange"],
-        mode="lines",
-        name="Relative Range",
-        line=dict(color="blue")
-    ))
+    # Identify eclipse periods
+    eclipse_events = df[
+        (df["eclipseTypeChief"] > 0) | (df["eclipseTypeDeputy"] > 0)
+    ][["secondsSinceStart", "eclipseTypeChief", "eclipseTypeDeputy"]]
 
-    # Add shaded areas for eclipse events
-    for _, row in df.iterrows():
-        if row["eclipseTypeChief"] > 0:  # Eclipse happening
-            fig.add_vrect(
-                x0=row["secondsSinceStart"],
-                x1=row["secondsSinceStart"] + 10,  # Adjust duration if needed
-                fillcolor=color_map[row["eclipseTypeChief"]],
-                opacity=0.3,
-                layer="below",
-                line_width=0,
-                annotation_text=eclipse_labels[row["eclipseTypeChief"]],
-                annotation_position="top left"
-            )
+    # Display results in Streamlit
+    st.subheader("🌑 Eclipse Events Over Time")
+    st.dataframe(eclipse_events)
 
-    # Update layout
-    fig.update_layout(
-        title="Eclipse Events vs. Mission Timeline",
-        xaxis_title="Mission Time (s)",
-        yaxis_title="Relative Range",
-        legend_title="Legend"
-    )
-
-    st.plotly_chart(fig, use_container_width=True)
+    st.subheader("🔴 Visibility Blocked Periods (Sun/Moon/Earth)")
+    st.dataframe(blocked_times)
 
 else:
-    st.warning("⚠️ Required columns are missing from the dataset.")
+    missing_cols = [col for col in required_columns if col not in df.columns]
+    st.warning(f"⚠️ Missing columns: {missing_cols}. Please check your dataset.")
+
 
