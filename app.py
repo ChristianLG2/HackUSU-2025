@@ -2,10 +2,6 @@ import os
 import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
-import subprocess
-
-# Run proximity.py before launching the Streamlit app
-subprocess.run(["python", "proximity.py"])
 
 # Load data
 df = pd.read_csv("RpoPlan.csv")
