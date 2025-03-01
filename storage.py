@@ -3,8 +3,9 @@ import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
 
+
 # Load data
-df = pd.read_csv("RpoPlan.csv")
+df = pd.read_csv("Data/RpoPlan.csv")
 
 # Convert secondsSinceStart to hour groups
 df["hour"] = df["secondsSinceStart"] // 3600  # Grouping by hour

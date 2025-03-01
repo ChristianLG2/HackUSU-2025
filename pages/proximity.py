@@ -8,11 +8,11 @@ st.set_page_config(page_title="Celestial Choreography", layout="wide")
 
 # File paths (update with correct paths if needed)
 csv_files = {
-    "rpo_plan": "RpoPlan.csv",
-    "maneuver_plan": "ManeuverPlan.csv",
-    "ground_contacts": "GroundContacts.csv",
-    "payload_events": "PayloadEvents.csv",
-    "maneuver_branches": "maneuver_branches.csv"
+    "rpo_plan": "Data/RpoPlan.csv",
+    "maneuver_plan": "Data/ManeuverPlan.csv",
+    "ground_contacts": "Data/GroundContacts.csv",
+    "payload_events": "Data/PayloadEvents.csv",
+    "maneuver_branches": "Data/maneuver_branches.csv"
 }
 
 # Load all CSVs into Pandas DataFrames with error handling

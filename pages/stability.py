@@ -4,8 +4,8 @@ import plotly.express as px
 
 # Load datasets
 csv_files = {
-    "maneuver_plan": "ManeuverPlan.csv",
-    "ground_contacts": "GroundContacts.csv",
+    "maneuver_plan": "Data/ManeuverPlan.csv",
+    "ground_contacts": "Data/GroundContacts.csv",
 }
 
 dfs = {}

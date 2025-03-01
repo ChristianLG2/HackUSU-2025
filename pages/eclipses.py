@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 
 # Load dataset
-csv_path = "RpoPlan.csv"
+csv_path = "Data/RpoPlan.csv"
 df = pd.read_csv(csv_path)
 
 # Strip column names to remove unwanted spaces
