@@ -15,21 +15,22 @@ Our application provides interactive 2D and 3D visualizations of relative trajec
 
 ### Repository Structure
 
-HACKUSU-2025/
-├── Data/                 
-├── pages/                
-│   ├── eclipses.py
-│   ├── fuel.py
-│   ├── proximity.py
-│   └── stability.py
-├── proximity.py          
-├── storage.py            
-├── requirements.txt      
-├── ReadMe.md             
-└── .gitignore
+| File/Folder        | Description                                                                 |
+|--------------------|-----------------------------------------------------------------------------|
+| `Data/`            | Raw CSV datasets used for mission planning (**ignored** via `.gitignore`).  |
+| `pages/`           | Streamlit multipage app scripts.                                            |
+| `pages/eclipses.py`| Eclipse conditions views/plots.                                             |
+| `pages/fuel.py`    | Fuel/ΔV usage calculations and visuals.                                     |
+| `pages/proximity.py`| Relative motion & safety (KOZ/range-rate) views.                           |
+| `pages/stability.py`| Mission segment & stability diagnostics.                                   |
+| `proximity.py`     | Core trajectory & proximity operations analysis.                            |
+| `storage.py`       | Data loading/parsing utilities for CSV inputs.                              |
+| `requirements.txt` | Python dependencies to run the app.                                         |
+| `ReadMe.md`        | Project overview and documentation.                                         |
+| `.gitignore`       | Ignore rules (all `*.csv` and the entire `Data/` folder).                   |
 
 
-### 📊Features
+### Features
 
 Trajectory Visualization: Relative motion of Deputy vs Chief in LVLH and ECI frames.
 
