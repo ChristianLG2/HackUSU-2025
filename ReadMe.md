@@ -15,32 +15,32 @@ Our application provides interactive 2D and 3D visualizations of relative trajec
 
 ### Repository Structure
 
-| File/Folder        | Description                                                                 |
-|--------------------|-----------------------------------------------------------------------------|
-| `Data/`            | Raw CSV datasets used for mission planning (**ignored** via `.gitignore`).  |
-| `pages/`           | Streamlit multipage app scripts.                                            |
-| `pages/eclipses.py`| Eclipse conditions views/plots.                                             |
-| `pages/fuel.py`    | Fuel/ΔV usage calculations and visuals.                                     |
-| `pages/proximity.py`| Relative motion & safety (KOZ/range-rate) views.                           |
-| `pages/stability.py`| Mission segment & stability diagnostics.                                   |
-| `proximity.py`     | Core trajectory & proximity operations analysis.                            |
-| `storage.py`       | Data loading/parsing utilities for CSV inputs.                              |
-| `requirements.txt` | Python dependencies to run the app.                                         |
-| `ReadMe.md`        | Project overview and documentation.                                         |
-| `.gitignore`       | Ignore rules (all `*.csv` and the entire `Data/` folder).                   |
+
+| File/Folder        | Description                                                  |
+|--------------------|--------------------------------------------------------------|
+| `pages/`           | Streamlit multipage app scripts.                             |
+| `pages/eclipses.py`| Eclipse conditions views/plots.                              |
+| `pages/fuel.py`    | Fuel/ΔV usage calculations and visuals.                      |
+| `pages/proximity.py`| Relative motion & safety (KOZ/range-rate) views.             |
+| `pages/stability.py`| Mission segment & stability diagnostics.                     |
+| `proximity.py`     | Core trajectory & proximity operations analysis.             |
+| `storage.py`       | Data loading/parsing utilities.                              |
+| `requirements.txt` | Python dependencies to run the app.                          |
+| `ReadMe.md`        | Project overview and documentation.                          |
+| `.gitignore`       | Ignore rules for CSV files and the `Data/` folder.           |
 
 
 ### Features
 
-Trajectory Visualization: Relative motion of Deputy vs Chief in LVLH and ECI frames.
+- Trajectory Visualization: Relative motion of Deputy vs Chief in LVLH and ECI frames.
 
-Maneuver Analysis: Delta-V planning and visualization of maneuver branches.
+- Maneuver Analysis: Delta-V planning and visualization of maneuver branches.
 
-Ground Contact Windows: Displays when communication with ground stations is possible.
+- Ground Contact Windows: Displays when communication with ground stations is possible.
 
-Payload Events: Visualizes data collection and onboard storage capacity.
+- Payload Events: Visualizes data collection and onboard storage capacity.
 
-Condition Overlays: Highlights eclipse phases, sun/moon angle limits, and safety zones.
+- Condition Overlays: Highlights eclipse phases, sun/moon angle limits, and safety zones.
 
 ### HackUSU 2025
 
