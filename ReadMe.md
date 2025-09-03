@@ -16,16 +16,16 @@ Our application provides interactive 2D and 3D visualizations of relative trajec
 ### Repository Structure
 
 HACKUSU-2025/
-├── Data/                 # CSV datasets (ignored in GitHub)
-├── pages/                # Streamlit multipage app scripts
+├── Data/                 
+├── pages/                
 │   ├── eclipses.py
 │   ├── fuel.py
 │   ├── proximity.py
 │   └── stability.py
-├── proximity.py          # Core trajectory analysis
-├── storage.py            # Data handling utilities
-├── requirements.txt      # Python dependencies
-├── ReadMe.md             # Project documentation
+├── proximity.py          
+├── storage.py            
+├── requirements.txt      
+├── ReadMe.md             
 └── .gitignore
 
 
